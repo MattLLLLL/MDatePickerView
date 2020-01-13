@@ -20,6 +20,7 @@ You can install MDatePickerView in several ways:
 
 Add source files to your project.
 - Use CocoaPods:
+
 ```swift
 pod 'MDatePickerView'
 ```
@@ -41,6 +42,7 @@ lazy var MDate : MDatePickerView = {
     }()
 ```
 
+**Adopt the MDatePickerViewDelegate protocol in your menu view controller, e.g.**
 ```swift
 extension ViewController : MDatePickerViewDelegate {
     func mdatePickerView(selectDate: Date) {
@@ -51,3 +53,17 @@ extension ViewController : MDatePickerViewDelegate {
     }
 }
 ```
+
+## What's next
+- Any suggestions?
+
+## Contribution
+
+- If you found a bug, open an issue
+- If you have a feature request, open an issue
+- If you want to contribute, submit a pull request
+- If you have any issue or want help, please drop me a mail on bowei685@gmail.com
+
+## License
+
+MDatePickerView is available under the MIT license.
