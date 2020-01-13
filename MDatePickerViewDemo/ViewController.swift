@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     lazy var MDate : MDatePickerView = {
             let mdate = MDatePickerView()
             mdate.delegate = self
-            mdate.Color = .lightGray
+            mdate.Color = UIColor(red: 0/255, green: 178/255, blue: 113/255, alpha: 1)
             mdate.translatesAutoresizingMaskIntoConstraints = false
+            mdate.from = 1980
+            mdate.to = 2100
             return mdate
         }()
         

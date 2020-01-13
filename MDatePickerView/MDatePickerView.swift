@@ -37,6 +37,10 @@ public class MDatePickerView : UIView {
         }
     }
     
+    public var from : Int?
+    
+    public var to : Int?
+    
     let ColYearCellID = "ColYearCellID"
     let ColMonthCellID = "ColMonthCellID"
     let ColDayCellID = "ColDayCellID"
@@ -121,6 +125,8 @@ extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,
             cell?.WeekColor = (Color != nil) ? Color : UIColor(red: 255/255, green: 97/255, blue: 82/255, alpha: 1)
         case 2:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColYearCellID, for: indexPath) as! ColYearCell
+            cell?.from = from ?? 1980
+            cell?.to = to ?? Calendar.current.component(.year, from: Date())
         default:
             break
         }

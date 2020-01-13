@@ -22,6 +22,8 @@ class ColCell: UICollectionViewCell {
     var WeekColor : UIColor?
     var WeekIsHidden = true
     var Selected : [Int]?
+    var from = 1980
+    var to = Calendar.current.component(.year, from: Date())
     
     lazy var Col : UICollectionView = {
         let layout = FlatCardCollectionViewLayout()

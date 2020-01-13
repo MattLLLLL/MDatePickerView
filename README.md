@@ -19,15 +19,17 @@ pod 'MDatePickerView'
 import MDatePickerView
 ```
 
+## Usage example
 ```swift
 lazy var MDate : MDatePickerView = {
         let mdate = MDatePickerView()
         mdate.Color = .gray
         mdate.delegate = self
+        mdate.from = 1980
+        mdate.to = 2100
         return mdate
     }()
 ```
-## Usage example
 
 ```swift
 extension ViewController : MDatePickerViewDelegate {

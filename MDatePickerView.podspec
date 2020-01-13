@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "MDatePickerView"
-  spec.version      = "0.0.1"
+  spec.version      = "1.2.2"
   spec.summary      = "MDatePickerView is a pull&push to refresh library written is Swift"
 
   # This description is used to generate tags and improve search results.

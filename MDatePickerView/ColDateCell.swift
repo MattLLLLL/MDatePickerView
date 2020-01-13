@@ -111,9 +111,9 @@ class ColDayCell: ColCell {
 
 class ColYearCell: ColCell {
     
-    let Year : [Int] = {
+    lazy var Year : [Int] = {
         var year = [Int]()
-        for i in 1980...Calendar.current.component(.year, from: Date()) {
+        for i in from...to {
             year.append(i)
         }
         return year
