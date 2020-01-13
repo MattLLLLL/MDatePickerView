@@ -42,7 +42,7 @@ lazy var MDate : MDatePickerView = {
     }()
 ```
 
-**Adopt the MDatePickerViewDelegate protocol in your menu view controller, e.g.**
+**Adopt the MDatePickerViewDelegate protocol in your view controller, e.g.**
 ```swift
 extension ViewController : MDatePickerViewDelegate {
     func mdatePickerView(selectDate: Date) {
