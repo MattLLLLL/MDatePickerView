@@ -14,11 +14,7 @@ public class MDatePickerView : UIView {
     var D = Calendar.current.component(.day, from: Date())
     var M = Calendar.current.component(.month, from: Date())
     
-    public var Color : UIColor? {
-        didSet{
-            Col.reloadData()
-        }
-    }
+    public var Color : UIColor?
     
     public var selectDate : Date? {
         didSet{
@@ -31,7 +27,7 @@ public class MDatePickerView : UIView {
                 if let date = dateComponents.date {
                     delegate?.mdatePickerView(selectDate: date)
                 }
-
+                
                 scrollToitem()
             }
         }
@@ -79,20 +75,18 @@ public class MDatePickerView : UIView {
     }
     
     func scrollToitem() {
-
         if let YearCell = Col.cellForItem(at: [0,2]) as? ColYearCell{
             YearCell.Selected = [Y,M,D]
             YearCell.layoutSubviews()
         }
         if let MonthCell = Col.cellForItem(at: [0,0]) as? ColMonthCell{
-             MonthCell.Selected = [Y,M,D]
+            MonthCell.Selected = [Y,M,D]
             MonthCell.layoutSubviews()
         }
         if let DayCell = Col.cellForItem(at: [0,1]) as? ColDayCell{
-             DayCell.Selected = [Y,M,D]
+            DayCell.Selected = [Y,M,D]
             DayCell.layoutSubviews()
         }
-        
         Col.reloadData()
     }
     
@@ -103,8 +97,6 @@ public class MDatePickerView : UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -166,5 +158,5 @@ extension MDatePickerView : ColCellDelegate {
         
         Col.reloadData()
     }
-
+    
 }

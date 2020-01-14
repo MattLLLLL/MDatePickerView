@@ -30,7 +30,7 @@ class ColMonthCell: ColCell {
         delegate?.CallDate(Type:.Month(indexPath.row + 1))
         Col.scrollToItem(at: [0,indexPath.row], at: .centeredHorizontally, animated: true)
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         if value < 2 {
@@ -40,7 +40,7 @@ class ColMonthCell: ColCell {
             }
         }
         Col.scrollToItem(at: [0,(Selected?[1] ?? 0) - 1], at: .centeredHorizontally, animated: true)
-
+        
     }
     
     override func selectDate(_ T : Int) {
@@ -49,7 +49,7 @@ class ColMonthCell: ColCell {
 }
 
 class ColDayCell: ColCell {
-
+    
     var day = 0
     let week = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
     
@@ -146,7 +146,6 @@ class ColYearCell: ColCell {
                 Index = index
             }
         }
-
         Col.scrollToItem(at: [0,Index], at: .centeredHorizontally, animated: true)
     }
     

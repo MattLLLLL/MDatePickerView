@@ -16,8 +16,8 @@ class ViewController: UIViewController {
             mdate.delegate = self
             mdate.Color = UIColor(red: 0/255, green: 178/255, blue: 113/255, alpha: 1)
             mdate.translatesAutoresizingMaskIntoConstraints = false
-            mdate.from = 1980
-            mdate.to = 2100
+            mdate.from = 1920
+            mdate.to = 2050
             return mdate
         }()
         

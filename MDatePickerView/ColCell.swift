@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import AudioToolbox
+import AudioToolbox
 
 enum DateType {
     case Year(Int)
@@ -40,7 +40,7 @@ class ColCell: UICollectionViewCell {
     }()
     
     let Line : UIView = {
-       let line = UIView()
+        let line = UIView()
         line.backgroundColor = UIColor.lightGray
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
@@ -62,6 +62,29 @@ class ColCell: UICollectionViewCell {
         Col.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
         Col.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
         
+        let LongTouch = UILongPressGestureRecognizer(target: self, action: #selector(longTouch(long:)))
+        Col.addGestureRecognizer(LongTouch)
+    }
+    
+    @objc func longTouch(long:UILongPressGestureRecognizer) {
+        guard long.state == .began else {
+            return
+        }
+        let soundID = SystemSoundID(1519)
+        AudioServicesPlaySystemSound(soundID)
+         
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
+        let pop = PopView(collectionViewLayout: layout)
+        pop.modalPresentationStyle = .popover
+        pop.popoverPresentationController?.delegate = self
+        pop.popoverPresentationController?.sourceView = self
+        pop.popoverPresentationController?.sourceRect = CGRect(x: frame.width / 2, y: frame.height / 2, width: .zero, height: .zero)
+        pop.preferredContentSize = CGSize(width: 250, height: 250)
+        pop.popoverPresentationController?.permittedArrowDirections = .up
+        UIApplication.shared.keyWindow?.rootViewController?.present(pop, animated: false, completion: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -89,10 +112,6 @@ extension ColCell : UICollectionViewDelegate,UICollectionViewDataSource,UICollec
         return CGSize(width: (self.frame.width / 3) , height: (self.frame.height - 1) )
     }
     
-
-//         let soundID = SystemSoundID(1519)
-//         AudioServicesPlaySystemSound(soundID)
-
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let cellwidth = (self.frame.width / 3) + 10
@@ -108,6 +127,12 @@ extension ColCell : UICollectionViewDelegate,UICollectionViewDataSource,UICollec
     }
     
     @objc func selectDate(_ T : Int) { }
+}
+
+extension ColCell : UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
 }
 
 class Cell : UICollectionViewCell {
@@ -133,7 +158,7 @@ class Cell : UICollectionViewCell {
     }()
     
     lazy var Stack : UIStackView = {
-       let stack = UIStackView(arrangedSubviews: [Label,Week])
+        let stack = UIStackView(arrangedSubviews: [Label,Week])
         stack.axis = .vertical
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
