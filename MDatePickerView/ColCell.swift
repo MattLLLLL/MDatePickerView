@@ -73,11 +73,7 @@ class ColCell: UICollectionViewCell {
         let soundID = SystemSoundID(1519)
         AudioServicesPlaySystemSound(soundID)
          
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        
-        let pop = PopView(collectionViewLayout: layout)
+        let pop = PopView()
         pop.modalPresentationStyle = .popover
         pop.popoverPresentationController?.delegate = self
         pop.popoverPresentationController?.sourceView = self
