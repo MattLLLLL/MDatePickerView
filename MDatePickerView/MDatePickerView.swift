@@ -14,7 +14,19 @@ public class MDatePickerView : UIView {
     var D = Calendar.current.component(.day, from: Date())
     var M = Calendar.current.component(.month, from: Date())
     
-    public var Color : UIColor?
+    public var delegate : MDatePickerViewDelegate?
+    
+    public var Color : UIColor = UIColor(red: 255/255, green: 97/255, blue: 82/255, alpha: 1)
+    
+    public var from : Int = 1980
+    
+    public var to : Int = Calendar.current.component(.year, from: Date())
+    
+    public var cornerRadius : CGFloat = 18 {
+        didSet{
+            Col.layer.cornerRadius = cornerRadius
+        }
+    }
     
     public var selectDate : Date? {
         didSet{
@@ -33,15 +45,9 @@ public class MDatePickerView : UIView {
         }
     }
     
-    public var from : Int?
-    
-    public var to : Int?
-    
     let ColYearCellID = "ColYearCellID"
     let ColMonthCellID = "ColMonthCellID"
     let ColDayCellID = "ColDayCellID"
-    
-    public var delegate : MDatePickerViewDelegate?
     
     lazy var Col : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,7 +55,7 @@ public class MDatePickerView : UIView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        col.layer.cornerRadius = 18
+        col.layer.cornerRadius = cornerRadius
         col.layer.borderColor = UIColor.lightGray.cgColor
         col.layer.borderWidth = 0.7
         col.dataSource = self
@@ -67,10 +73,12 @@ public class MDatePickerView : UIView {
         Col.register(ColDayCell.self, forCellWithReuseIdentifier: ColDayCellID)
         
         addSubview(Col)
-        Col.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        Col.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        Col.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
-        Col.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
+        NSLayoutConstraint.activate([
+                    Col.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                    Col.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                    Col.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+                    Col.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
+        ])
         
     }
     
@@ -111,14 +119,14 @@ extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,
         switch indexPath.row {
         case 0:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColMonthCellID, for: indexPath) as! ColMonthCell
-            cell?.Col.backgroundColor = (Color != nil) ? Color : UIColor(red: 255/255, green: 97/255, blue: 82/255, alpha: 1)
+            cell?.Col.backgroundColor = Color
         case 1:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColDayCellID, for: indexPath) as! ColDayCell
-            cell?.WeekColor = (Color != nil) ? Color : UIColor(red: 255/255, green: 97/255, blue: 82/255, alpha: 1)
+            cell?.WeekColor = Color
         case 2:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColYearCellID, for: indexPath) as! ColYearCell
-            cell?.from = from ?? 1980
-            cell?.to = to ?? Calendar.current.component(.year, from: Date())
+            cell?.from = from
+            cell?.to = to
         default:
             break
         }
