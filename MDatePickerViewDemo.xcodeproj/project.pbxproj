@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2F928B23D28AAB0039D22D /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F928A23D28AAB0039D22D /* CustomDatePickerView.swift */; };
+		AE2F928D23D28D8A0039D22D /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F928C23D28D8A0039D22D /* TextLabel.swift */; };
+		AE6ED1A023D288CC00E32FB8 /* ColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ED19E23D288CC00E32FB8 /* ColCell.swift */; };
+		AE6ED1A123D288CD00E32FB8 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ED19F23D288CC00E32FB8 /* CalendarController.swift */; };
 		C95B538B23CC160000C05C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B538A23CC160000C05C24 /* AppDelegate.swift */; };
 		C95B538D23CC160000C05C24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B538C23CC160000C05C24 /* SceneDelegate.swift */; };
 		C95B538F23CC160000C05C24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B538E23CC160000C05C24 /* ViewController.swift */; };
@@ -18,8 +22,6 @@
 		C95B53AB23CC162E00C05C24 /* MDatePickerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C95B53A323CC162E00C05C24 /* MDatePickerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C95B53CE23CC199900C05C24 /* MDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B53B223CC170A00C05C24 /* MDatePickerView.swift */; };
 		C95B53CF23CC199900C05C24 /* ColDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B53B123CC170A00C05C24 /* ColDateCell.swift */; };
-		C95B53D023CC19A100C05C24 /* FlatCardCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B53B723CC18AF00C05C24 /* FlatCardCollectionViewLayout.swift */; };
-		C95B53D123CC19A100C05C24 /* ColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B53B823CC18AF00C05C24 /* ColCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE2F928A23D28AAB0039D22D /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		AE2F928C23D28D8A0039D22D /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
+		AE6ED19E23D288CC00E32FB8 /* ColCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColCell.swift; sourceTree = "<group>"; };
+		AE6ED19F23D288CC00E32FB8 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		C95B538723CC160000C05C24 /* MDatePickerViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDatePickerViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95B538A23CC160000C05C24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C95B538C23CC160000C05C24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +66,6 @@
 		C95B53A623CC162E00C05C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C95B53B123CC170A00C05C24 /* ColDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColDateCell.swift; sourceTree = "<group>"; };
 		C95B53B223CC170A00C05C24 /* MDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDatePickerView.swift; sourceTree = "<group>"; };
-		C95B53B723CC18AF00C05C24 /* FlatCardCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatCardCollectionViewLayout.swift; sourceTree = "<group>"; };
-		C95B53B823CC18AF00C05C24 /* ColCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE6ED19D23D288CC00E32FB8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AE2F928C23D28D8A0039D22D /* TextLabel.swift */,
+				AE6ED19E23D288CC00E32FB8 /* ColCell.swift */,
+				AE6ED19F23D288CC00E32FB8 /* CalendarController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C95B537E23CC160000C05C24 = {
 			isa = PBXGroup;
 			children = (
@@ -120,10 +134,10 @@
 			children = (
 				C95B53A523CC162E00C05C24 /* MDatePickerView.h */,
 				C95B53A623CC162E00C05C24 /* Info.plist */,
-				C95B53B123CC170A00C05C24 /* ColDateCell.swift */,
 				C95B53B223CC170A00C05C24 /* MDatePickerView.swift */,
-				C95B53B723CC18AF00C05C24 /* FlatCardCollectionViewLayout.swift */,
-				C95B53B823CC18AF00C05C24 /* ColCell.swift */,
+				C95B53B123CC170A00C05C24 /* ColDateCell.swift */,
+				AE2F928A23D28AAB0039D22D /* CustomDatePickerView.swift */,
+				AE6ED19D23D288CC00E32FB8 /* Utils */,
 			);
 			path = MDatePickerView;
 			sourceTree = "<group>";
@@ -251,10 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95B53D023CC19A100C05C24 /* FlatCardCollectionViewLayout.swift in Sources */,
 				C95B53CF23CC199900C05C24 /* ColDateCell.swift in Sources */,
-				C95B53D123CC19A100C05C24 /* ColCell.swift in Sources */,
+				AE6ED1A023D288CC00E32FB8 /* ColCell.swift in Sources */,
+				AE2F928B23D28AAB0039D22D /* CustomDatePickerView.swift in Sources */,
+				AE2F928D23D28D8A0039D22D /* TextLabel.swift in Sources */,
 				C95B53CE23CC199900C05C24 /* MDatePickerView.swift in Sources */,
+				AE6ED1A123D288CD00E32FB8 /* CalendarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +424,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MKD55GN2YS;
 				INFOPLIST_FILE = MDatePickerViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -426,6 +443,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MKD55GN2YS;
 				INFOPLIST_FILE = MDatePickerViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

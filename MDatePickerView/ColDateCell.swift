@@ -13,6 +13,7 @@ class ColMonthCell: ColCell {
     let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     var value = 0
     
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
     }
@@ -30,9 +31,11 @@ class ColMonthCell: ColCell {
         delegate?.CallDate(Type:.Month(indexPath.row + 1))
         Col.scrollToItem(at: [0,indexPath.row], at: .centeredHorizontally, animated: true)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
+        CellType = .Month(.zero)
+        
         if value < 2 {
             if (Selected[1]) - 1 == 0 {
                 value += 1
@@ -60,6 +63,12 @@ class ColDayCell: ColCell {
             let range = (calendar as NSCalendar?)?.range(of: NSCalendar.Unit.day, in: NSCalendar.Unit.month, for: time.date ?? Date())
             day = range?.length ?? 30
             
+            let week = DateComponents(calendar: Calendar.current, year: Selected[0], month: Selected[1],day: 1)
+            let comps = (calendar as NSCalendar?)?.components(NSCalendar.Unit.weekday, from: week.date ?? Date())
+            if let Comps = comps?.weekday {
+                CellType = .Day(week: Comps - 1, range: day)
+            }
+        
             if day < Selected[2] {
                 Col.reloadData()
                 Col.scrollToItem(at: [0,day - 1], at: .centeredHorizontally, animated: true)
@@ -94,16 +103,16 @@ class ColDayCell: ColCell {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Col.scrollToItem(at: [0,indexPath.row], at: .centeredHorizontally, animated: true)
-        delegate?.CallDate(Type:.Day(indexPath.row + 1))
+        delegate?.CallDate(Type:.Day(week: indexPath.row + 1, range: .zero))
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         Col.scrollToItem(at: [0,(Selected[2]) - 1], at: .centeredHorizontally, animated: true)
     }
     
     override func selectDate(_ T : Int) {
-        delegate?.CallDate(Type:.Day(T))
+        delegate?.CallDate(Type:.Day(week: T, range: .zero))
     }
 }
 
@@ -130,12 +139,13 @@ class ColYearCell: ColCell {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.CallDate(Type:.Year(Year[indexPath.row]))
+        delegate?.CallDate(Type:.Year(select: Year[indexPath.row], range: .init()))
         Col.scrollToItem(at: [0,indexPath.row], at: .centeredHorizontally, animated: true)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
+        CellType = .Year(select: .zero, range: Year)
         
         var Index = Year.count - 1
         
@@ -148,6 +158,6 @@ class ColYearCell: ColCell {
     }
     
     override func selectDate(_ T : Int) {
-        delegate?.CallDate(Type:.Year(Year[T - 1]))
+        delegate?.CallDate(Type:.Year(select: Year[T - 1], range: .init()))
     }
 }

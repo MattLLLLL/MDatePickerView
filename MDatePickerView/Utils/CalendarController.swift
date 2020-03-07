@@ -8,11 +8,12 @@
 
 import UIKit
 
-class CalendarContainer : UIViewController {
+class CalendarController : UIViewController {
     
-    let testView : UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
+    
+    lazy var CustomView : CustomDatePickerView = {
+        let v = CustomDatePickerView()
+        v.calendarController = self
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
@@ -20,14 +21,13 @@ class CalendarContainer : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
-        view.addSubview(testView)
+        view.addSubview(CustomView)
         
         NSLayoutConstraint.activate([
-            testView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            testView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
-            testView.heightAnchor.constraint(equalToConstant: 300),
-            testView.widthAnchor.constraint(equalToConstant: 300)
+            CustomView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            CustomView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
+            CustomView.heightAnchor.constraint(equalToConstant: 380),
+            CustomView.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
     

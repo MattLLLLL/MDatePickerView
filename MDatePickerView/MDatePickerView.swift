@@ -122,7 +122,6 @@ extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,
             cell?.Col.backgroundColor = Color
         case 1:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColDayCellID, for: indexPath) as! ColDayCell
-            cell?.WeekColor = Color
         case 2:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColYearCellID, for: indexPath) as! ColYearCell
             cell?.from = from
@@ -130,6 +129,7 @@ extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,
         default:
             break
         }
+        cell?.WeekColor = Color
         cell?.Selected = [Y,M,D]
         cell?.delegate = self
         return cell!
@@ -151,11 +151,11 @@ extension MDatePickerView : ColCellDelegate {
     
     func CallDate(Type:DateType) {
         switch Type {
-        case .Day(let day):
-            D = day
+        case .Day(week: let Week, range: _):
+            D = Week
         case .Month(let month):
             M = month
-        case .Year(let year):
+        case .Year(select: let year, range: _):
             Y = year
         }
         
@@ -164,7 +164,7 @@ extension MDatePickerView : ColCellDelegate {
             delegate?.mdatePickerView(selectDate: date)
         }
         
-        Col.reloadData()
+       scrollToitem()
     }
     
 }
