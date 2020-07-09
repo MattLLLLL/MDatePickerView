@@ -9,13 +9,21 @@
 import UIKit
 
 class ColMonthCell: ColCell {
+    let allMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     
-    let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    lazy var month : [String] = {
+        // for future uses
+        if self.to > 0 {
+            return Array(self.allMonths[...self.to])
+        } else {
+            return self.allMonths
+        }
+    }()
+    
     var value = 0
     
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return month.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,7 +51,7 @@ class ColMonthCell: ColCell {
             }
         }
         Col.scrollToItem(at: [0,(Selected[1]) - 1], at: .centeredHorizontally, animated: true)
-        
+
     }
     
     override func selectDate(_ T : Int) {
@@ -63,6 +71,11 @@ class ColDayCell: ColCell {
             let range = (calendar as NSCalendar?)?.range(of: NSCalendar.Unit.day, in: NSCalendar.Unit.month, for: time.date ?? Date())
             day = range?.length ?? 30
             
+            // for future use
+            if self.to > 0 {
+                day = to
+            }
+            
             let week = DateComponents(calendar: Calendar.current, year: Selected[0], month: Selected[1],day: 1)
             let comps = (calendar as NSCalendar?)?.components(NSCalendar.Unit.weekday, from: week.date ?? Date())
             if let Comps = comps?.weekday {
@@ -74,6 +87,7 @@ class ColDayCell: ColCell {
                 Col.scrollToItem(at: [0,day - 1], at: .centeredHorizontally, animated: true)
                 return
             }
+            
             Col.reloadData()
         }
     }

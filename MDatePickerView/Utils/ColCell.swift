@@ -125,9 +125,13 @@ extension ColCell : UICollectionViewDelegate,UICollectionViewDataSource,UICollec
         offset = CGPoint(x: roundedIndex * cellwidth - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
         
-        selectDate(Int(roundedIndex + 1))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.selectDate(Int(roundedIndex + 1))
+        }
+        
     }
     
+
     @objc func selectDate(_ T : Int) { }
 }
 
