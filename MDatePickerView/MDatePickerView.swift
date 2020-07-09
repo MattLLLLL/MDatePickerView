@@ -34,16 +34,13 @@ public class MDatePickerView : UIView {
         didSet{
             if let selected = selectDate {
                 var select = selected
-                debugPrint("Date is selected ")
                 if select > maxDate {
                     select = maxDate
                     self.layoutSubviews()
-                    debugPrint("Date is MAX")
                 }
                 if select < minDate {
                     select = minDate
                     self.layoutSubviews()
-                    debugPrint("Date is MIN")
                 }
                 
                 Y = Calendar.current.component(.year, from: select)
@@ -98,7 +95,6 @@ public class MDatePickerView : UIView {
     }
     
     func scrollToitem() {
-        debugPrint("Scrolling to \(D)-\(M)-\(Y)")
         if let YearCell = Col.cellForItem(at: [0,2]) as? ColYearCell{
             YearCell.Selected = [Y,M,D]
             YearCell.layoutSubviews()
@@ -174,19 +170,16 @@ extension MDatePickerView : ColCellDelegate {
         case .Year(select: let year, range: _):
             Y = year
         }
-        debugPrint("Call DATE is called")
         let dateComponents = DateComponents(calendar: Calendar.current, year: Y, month: M, day: D)
         if let date = dateComponents.date {
             var newDate = date
             if newDate > maxDate {
                 newDate = maxDate
                 setToDate(date: newDate)
-                debugPrint("AND set to MAXimum")
             }
             if newDate < minDate {
                 newDate = minDate
                 setToDate(date: newDate)
-                debugPrint("AND set to MINimum")
             }
             delegate?.mdatePickerView(selectDate: newDate)
         }
