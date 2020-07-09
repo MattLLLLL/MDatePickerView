@@ -18,10 +18,12 @@ public class MDatePickerView : UIView {
     
     public var Color : UIColor = UIColor(red: 255/255, green: 97/255, blue: 82/255, alpha: 1)
     
-    public var from : Int = 1980
+//    public var from : Int = 1980
+//    public var to : Int = Calendar.current.component(.year, from: Date())
     
-    public var to : Int = Calendar.current.component(.year, from: Date())
-    
+    public var maxDate = Date()
+    public var minDate : Date = Date(timeIntervalSince1970: 0)
+        
     public var cornerRadius : CGFloat = 18 {
         didSet{
             Col.layer.cornerRadius = cornerRadius
@@ -30,7 +32,17 @@ public class MDatePickerView : UIView {
     
     public var selectDate : Date? {
         didSet{
-            if let select = selectDate{
+            if let selected = selectDate {
+                var select = selected
+                if select > maxDate {
+                    select = maxDate
+                    self.layoutSubviews()
+                }
+                if select < minDate {
+                    select = minDate
+                    self.layoutSubviews()
+                }
+                
                 Y = Calendar.current.component(.year, from: select)
                 D = Calendar.current.component(.day, from: select)
                 M = Calendar.current.component(.month, from: select)
@@ -74,10 +86,10 @@ public class MDatePickerView : UIView {
         
         addSubview(Col)
         NSLayoutConstraint.activate([
-                    Col.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-                    Col.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-                    Col.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-                    Col.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
+            Col.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            Col.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            Col.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+            Col.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
         ])
         
     }
@@ -124,8 +136,8 @@ extension MDatePickerView : UICollectionViewDelegate,UICollectionViewDataSource,
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColDayCellID, for: indexPath) as! ColDayCell
         case 2:
             cell = Col.dequeueReusableCell(withReuseIdentifier: ColYearCellID, for: indexPath) as! ColYearCell
-            cell?.from = from
-            cell?.to = to
+            cell?.from = Calendar.current.component(.year, from: minDate)
+            cell?.to = Calendar.current.component(.year, from: maxDate)
         default:
             break
         }
@@ -158,13 +170,28 @@ extension MDatePickerView : ColCellDelegate {
         case .Year(select: let year, range: _):
             Y = year
         }
-        
         let dateComponents = DateComponents(calendar: Calendar.current, year: Y, month: M, day: D)
         if let date = dateComponents.date {
-            delegate?.mdatePickerView(selectDate: date)
+            var newDate = date
+            if newDate > maxDate {
+                newDate = maxDate
+                setToDate(date: newDate)
+            }
+            if newDate < minDate {
+                newDate = minDate
+                setToDate(date: newDate)
+            }
+            delegate?.mdatePickerView(selectDate: newDate)
         }
         
-       scrollToitem()
+        scrollToitem()
+    }
+    
+    private func setToDate(date: Date) {
+        Y = Calendar.current.component(.year, from: date)
+        D = Calendar.current.component(.day, from: date)
+        M = Calendar.current.component(.month, from: date)
+        self.layoutSubviews()
     }
     
 }

@@ -10,7 +10,7 @@
 <a href="https://travis-ci.org/kciter/GlitchLabel"><img alt="Build Status" src="https://travis-ci.org/kciter/GlitchLabel.svg?branch=master"></a></p>
 </div>
 
-## Requirements 
+## Requirements
 - iOS 9.0
 - Xcode 9
 - Swift 4.0
@@ -36,8 +36,8 @@ lazy var MDate : MDatePickerView = {
         let mdate = MDatePickerView()
         mdate.Color = .gray
         mdate.delegate = self
-        mdate.from = 1980
-        mdate.to = 2100
+        mdate.minDate = DateComponents(calendar: Calendar.current, year: 2018, month: 3).date!
+        mdate.maxDate = DateComponents(calendar: Calendar.current, year: 2020, month: 9).date!
         return mdate
     }()
 ```

@@ -17,8 +17,8 @@ class ViewController: UIViewController {
         mdate.Color = UIColor(red: 0/255, green: 178/255, blue: 113/255, alpha: 1)
         mdate.cornerRadius = 14
         mdate.translatesAutoresizingMaskIntoConstraints = false
-        mdate.from = 1920
-        mdate.to = 2050
+        mdate.minDate = DateComponents(calendar: Calendar.current, year: 2018, month: 3).date!
+        mdate.maxDate = DateComponents(calendar: Calendar.current, year: 2020, month: 9).date!
         return mdate
     }()
     
