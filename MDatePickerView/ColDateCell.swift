@@ -8,14 +8,30 @@
 
 import UIKit
 
+
+
 class ColMonthCell: ColCell {
     
-    let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    let month = [
+        MDateConverter.getMonthName(monthNumber: 1),
+        MDateConverter.getMonthName(monthNumber: 2),
+        MDateConverter.getMonthName(monthNumber: 3),
+        MDateConverter.getMonthName(monthNumber: 4),
+        MDateConverter.getMonthName(monthNumber: 5),
+        MDateConverter.getMonthName(monthNumber: 6),
+        MDateConverter.getMonthName(monthNumber: 7),
+        MDateConverter.getMonthName(monthNumber: 8),
+        MDateConverter.getMonthName(monthNumber: 9),
+        MDateConverter.getMonthName(monthNumber: 10),
+        MDateConverter.getMonthName(monthNumber: 11),
+        MDateConverter.getMonthName(monthNumber: 12)]
     var value = 0
     
     
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        
+        return month.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,7 +70,7 @@ class ColMonthCell: ColCell {
 class ColDayCell: ColCell {
     
     var day = 0
-    let week = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    let week = MDateConverter.getDayNames()
     
     override var Selected: [Int] {
         didSet{
@@ -108,7 +124,8 @@ class ColDayCell: ColCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        Col.scrollToItem(at: [0,(Selected[2]) - 1], at: .centeredHorizontally, animated: true)
+        
+        Col.scrollToItem(at: [0,Selected[2] - 1], at: .centeredHorizontally, animated: true)
     }
     
     override func selectDate(_ T : Int) {

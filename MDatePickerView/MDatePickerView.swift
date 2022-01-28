@@ -159,12 +159,19 @@ extension MDatePickerView : ColCellDelegate {
             Y = year
         }
         
-        let dateComponents = DateComponents(calendar: Calendar.current, year: Y, month: M, day: D)
-        if let date = dateComponents.date {
-            delegate?.mdatePickerView(selectDate: date)
+        var dateComponents = DateComponents(calendar: Calendar.current, year: Y, month: M, day: D)
+        
+        var theDate = dateComponents.date!
+
+        while(!theDate.matchesComponentDay(dateComponents.day!)) {
+            
+            D = dateComponents.day! - 1
+            dateComponents = DateComponents(calendar: dateComponents.calendar, year: Y, month: M, day: D)
+            theDate = dateComponents.date!
         }
         
-       scrollToitem()
+        delegate?.mdatePickerView(selectDate: theDate)
+        
+        scrollToitem()
     }
-    
 }
